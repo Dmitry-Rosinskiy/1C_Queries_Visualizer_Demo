@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Визуализатор запросов системы "1С:Аналитика"</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="icon" type="image/x-icon" href="images/ans_svg.svg">
+    <script type="module" src="./app.js"></script>
+    <script type="module" src="./models.js"></script>
+    <script type="module">
+        import AppModelVisualizer from './app.js';
+        import { FlatConstant, FlatSelect, FlatJoin, FlatUnion, Query1, showQueriesPanel } from './models.js';
+        window.addEventListener('load', () => {
+            const app = new AppModelVisualizer("graph-container", (tableId) => {
+                alert("Окно редактирования " + tableId);
+                // Чтобы схема обновилась после редактирования, необходимо вернуть новую модель запроса
+                return undefined;
+        });
+        showQueriesPanel(app);
+        });
+    </script>
+</head>
+<body>
+    <h1>
+        Визуализатор запросов системы "1С:Аналитика"
+    </h1>
+    <div id="queries-select"></div>
+    <br>
+    <div id="graph-container"></div>
+</body>
+</html>
